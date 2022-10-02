@@ -1,8 +1,13 @@
 ---
+name: terraform-test
 on:
   push:
     branches:
       - master
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
 
 jobs:
   terraform:
